@@ -68,3 +68,11 @@ JOIN courses ON courses.id= course_teacher.course_id
 JOIN degrees ON courses.degree_id = degrees.id
 JOIN departments on degrees.department_id = departments.id
 WHERE departments.`name` LIKE "%matematica%";
+
+BONUS: Selezionare per ogni studente il numero di tentativi sostenuti per ogni esame, stampando anche il voto massimo. Successivamente, filtrare i tentativi con voto minimo 18.
+SELECT students.surname, students.`name`, courses.`name` as "Nome corso d'esame", COUNT(exams.id) as "Tentativi appello"
+FROM exams
+join exam_student ON exam_student.exam_id = exams.id
+JOIN students ON exam_student.student_id = students.id
+JOIN courses on exams.course_id = courses.id
+GROUP BY exams.course_id, students.id;
